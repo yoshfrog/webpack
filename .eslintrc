@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,   //ブラウザ上で利用するJSということ -> console.logエラー回避
+    "es2017": true     //ES8
+  },
+  "extends": "eslint:recommended",  //eslintの推奨条件で反映される
+  "parser": "babel-eslint",
+  "parserOptions": {
+    // "ecmaVersion": 2017,        //env で指定してあれば記述不要
+    "sourceType": "module"         //module単位(ES6)で管理  default はscript
+  },
+  //globalの値を渡す
+  "globals": {
+    "utils" : "readonly",
+    // jQueryがグローバルに存在することを示す
+    "jQuery": "readonly",          // readonly 変更不可  writable 可変
+    // $がグローバルに存在することを示す
+    "$" : "readonly"
+  },
+  "rules": {
+    "no-undef": "error",           // 宣言していない定数/変数があればエラー
+    "semi": ["error", "always"]    //常に文末にセミコロン、なければエラー
+  }
+}
