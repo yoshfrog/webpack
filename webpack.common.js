@@ -19,9 +19,10 @@ module.exports = ({outputFile, assetFile, htmlMinifyOption}) => ({   //webpack.d
   },
 
   output: {
+    publicPath: '/',                                //パスをルート相対にする場合
     path: path.resolve(__dirname, `${outputDir}`),  //出力先ディレクトリ
-    filename: `js/${outputFile}.js`,                //出力後のファイル名
-    chunkFilename: `js/${outputFile}.js`,           //splitChunks用のファイル名
+    filename: `assets/js/${outputFile}.js`,         //出力後のファイル名
+    chunkFilename: `assets/js/${outputFile}.js`,    //splitChunks用のファイル名
   },
 
   module: {
@@ -76,7 +77,7 @@ module.exports = ({outputFile, assetFile, htmlMinifyOption}) => ({   //webpack.d
     new FixStyleOnlyEntriesPlugin(),
     //CSSファイル分離
     new MiniCssExtractPlugin({
-      filename: `css/${outputFile}.css`,            //出力後のファイル名
+      filename: `assets/css/${outputFile}.css`,            //出力後のファイル名
     }),
     //指定のモジュールをimport不要で全体で使用可能にする
     new webpack.ProvidePlugin({
@@ -110,7 +111,7 @@ module.exports = ({outputFile, assetFile, htmlMinifyOption}) => ({   //webpack.d
 
     //画像 コピー
     new CopyPlugin([
-      { from: 'src/images', to: 'images' },
+      { from: 'src/images', to: './assets/images' },
     ]),
     //画像 圧縮
     new ImageminPlugin({
